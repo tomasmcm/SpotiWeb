@@ -106,6 +106,14 @@ app.on('ready', function() {
   localshortcut.register(mainWindow, 'CmdOrCtrl+H', () => {
     mainWindow.hide();
   });
+  localshortcut.register(mainWindow, 'Cmd+Ctrl+F', () => {
+    if(mainWindow.isFullScreen()){
+      mainWindow.setFullScreen(false);
+    } else {
+      mainWindow.setFullScreen(true);
+    }
+
+  });
 
   var registeredNext = globalShortcut.register('MediaNextTrack', function () {
     console.log('medianexttrack pressed');

@@ -32,7 +32,7 @@
   ],
   "author": "tomasmcm",
   "license": "CC0-1.0",
-  "homepage": "https://github.com/tomasmcm/spotiweb",
+  "homepage": "https://github.com/tomasmcm/SpotiWeb",
   "dependencies": {
     "electron-builder": "^2.6.0",
     "electron-packager": "^5.2.0",

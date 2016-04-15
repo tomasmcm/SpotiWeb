@@ -15,19 +15,18 @@ Why would you use this app instead of [these](https://github.com/search?utf8=✓
 Check [releases](https://github.com/tomasmcm/SpotiWeb/releases) for the latest version.
 
 
-### Thanks to:
+### Contributions
 * [Electron](http://electron.atom.io)
-* [Spotify](https://www.spotify.com)
 * [beaufortfrancois - Spotify Hotkeys](https://github.com/beaufortfrancois/spotify-hotkeys-chrome-extension)
 * [hokein - Electron Notifications](https://github.com/hokein/electron-sample-apps/tree/master/notifications)
 
 
-### Rights:
+### Third Party
 * Pepper Flash Plugin, All Rights Reserved © Adobe & Google
 * Spotify, All Rights Reserved © Spotify AB
 
 
-### Future Improvements:
+### Future Improvements
 * Custom menu
 * Fix http errors when loading images
 

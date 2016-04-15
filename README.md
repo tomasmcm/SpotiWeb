@@ -9,28 +9,17 @@ Why would you use this app instead of [these](https://github.com/search?utf8=✓
 * Control your music with Media Keys (Play/Pause, Next, Previous)
 * Notification of current music with Author, Title & Album Cover
 
-
+<br>
 ### Download
 
 Check [releases](https://github.com/tomasmcm/SpotiWeb/releases) for the latest version.
 
-
-### Contributions
-* [Electron](http://electron.atom.io)
-* [beaufortfrancois - Spotify Hotkeys](https://github.com/beaufortfrancois/spotify-hotkeys-chrome-extension)
-* [hokein - Electron Notifications](https://github.com/hokein/electron-sample-apps/tree/master/notifications)
-
-
-### Third Party
-* Pepper Flash Plugin, All Rights Reserved © Adobe & Google
-* Spotify, All Rights Reserved © Spotify AB
-
-
+<br>
 ### Future Improvements
 * Custom menu
 * Fix http errors when loading images
 
-
+<br>
 ### _I'm old school and I want to compile it myself_
 
 From your command line:
@@ -83,3 +72,14 @@ $ npm run build:win
 $ npm run build:linux
 
 ```
+
+<br>
+### Contributions
+* [Electron](http://electron.atom.io)
+* [beaufortfrancois - Spotify Hotkeys](https://github.com/beaufortfrancois/spotify-hotkeys-chrome-extension)
+* [hokein - Electron Notifications](https://github.com/hokein/electron-sample-apps/tree/master/notifications)
+
+<br>
+### Third Party
+* Pepper Flash Plugin, All Rights Reserved © Adobe & Google
+* Spotify, All Rights Reserved © Spotify AB

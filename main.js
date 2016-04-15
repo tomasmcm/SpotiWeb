@@ -62,6 +62,7 @@ app.on('ready', function() {
     frame: false,
     nodeIntegration: false,
     webSecurity: false,
+    fullscreenable: true,
     allowDisplayingInsecureContent: true,
     allowRunningInsecureContent: true,
     icon: __dirname + '/assets/icon.png',

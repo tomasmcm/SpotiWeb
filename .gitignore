@@ -1,0 +1,16 @@
+node_modules
+
+# App-specific
+releases
+dist
+
+# Vim
+[._]*.s[a-w][a-z]
+[._]s[a-w][a-z]
+*.un~
+Session.vim
+.netrwhist
+*~
+
+# Mac
+.DS_Store

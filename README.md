@@ -32,7 +32,7 @@ Check [releases](https://github.com/tomasmcm/spotiweb/releases) for the latest v
 *
 
 
-### I'm old school and I want to compile it myself
+### _I'm old school and I want to compile it myself_
 
 From your command line:
 
@@ -47,31 +47,40 @@ $ brew install wine makensis
 # REBOOT BEFORE CONTINUING
 
 
-# To create App binaries and installers
-$ npm run-script build
-
-# Export Mac app and installer only
-$ npm run-script build:mac
-
-# Export Win apps and installers only
-$ npm run-script build:win
-
-# Export Linux apps and tar.gz only
-$ npm run-script build:linux
-# PS: if when running Linux build/installer commands you get permission errors run this:
-$ chmod u+x linux.sh
-
-
 # To create App binaries
-$ npm run-script package
+$ npm run package
 
 # Export Mac app only
-$ npm run-script package:mac
+$ npm run package:mac
 
 # Export Win apps only
-$ npm run-script package:win
+$ npm run package:win
 
 # Export Linux apps only
-$ npm run-script package:linux
+$ npm run package:linux
+
+
+# PS: if when running build commands you get permission errors run this:
+$ chmod u+x mac.sh
+$ chmod u+x win.sh
+$ chmod u+x linux.sh
+
+# To create App zip's
+$ npm run zip
+# OR Mac only
+$ npm run zip:mac
+# OR Win only
+$ npm run zip:win
+# OR Linux only
+$ npm run zip:linux
+
+# To create App binaries and zip's
+$ npm run build
+# OR Mac only
+$ npm run build:mac
+# OR Win only
+$ npm run build:win
+# OR Linux only
+$ npm run build:linux
 
 ```

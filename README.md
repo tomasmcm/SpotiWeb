@@ -12,7 +12,7 @@ Why would you use this app instead of [these](https://github.com/search?utf8=✓
 
 ### Download
 
-Check [releases](https://github.com/tomasmcm/spotiweb/releases) for the latest version.
+Check [releases](https://github.com/tomasmcm/SpotiWeb/releases) for the latest version.
 
 
 ### Thanks to:
@@ -27,9 +27,9 @@ Check [releases](https://github.com/tomasmcm/spotiweb/releases) for the latest v
 * Spotify, All Rights Reserved © Spotify AB
 
 
-### Future Improvments:
-* Display Album Cover in notification
-*
+### Future Improvements:
+* Custom menu
+* Fix http errors when loading images
 
 
 ### _I'm old school and I want to compile it myself_

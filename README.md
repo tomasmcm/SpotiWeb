@@ -7,7 +7,7 @@ Why would you want to use this instead of the Spotify Desktop App? Because Ads..
 Why would you use this app instead of [these](https://github.com/search?utf8=✓&q=spotify+electron&type=Repositories&ref=searchresults)? Because:
 * Works with Mac, Windows and Linux
 * Control your music with Media Keys (Play/Pause, Next, Previous)
-* Notification of current music with Author & Title
+* Notification of current music with Author, Title & Album Cover
 
 
 ### Download

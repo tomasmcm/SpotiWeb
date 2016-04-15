@@ -5,6 +5,7 @@ const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
 const globalShortcut = electron.globalShortcut;
 const ipcMain = electron.ipcMain;
+const localshortcut = require('electron-localshortcut');
 
 
 switch (process.platform) {
@@ -99,7 +100,7 @@ app.on('ready', function() {
     app.quit();
   });
 
-  globalShortcut.register('CmdOrCtrl+H', function () {
+  localshortcut.register(mainWindow, 'CmdOrCtrl+H', () => {
     mainWindow.hide();
   });
 

@@ -18,6 +18,7 @@ Check [releases](https://github.com/tomasmcm/SpotiWeb/releases) for the latest v
 ### Future Improvements
 * Custom menu
 * Fix http errors when loading images
+* Allow fullscreen mode
 
 <br>
 ### _I'm old school and I want to compile it myself_

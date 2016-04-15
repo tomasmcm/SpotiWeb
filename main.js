@@ -81,17 +81,19 @@ app.on('ready', function() {
 
 
   mainWindow.on('page-title-updated', function(){
-    let title = mainWindow.webContents.getTitle();
-    if(title.indexOf("▶") !== -1){
-      title = title.substring(2);
-    }else{
-      return;
-    }
-    let music = title.substring(0, title.indexOf("-")-1);
-    let author = title.substring(title.indexOf("-")+1, title.length-10);
-    let script = "notify('"+music+"', '"+author+"');";
-    mainWindow.webContents.executeJavaScript(script);
-    //console.log(script);
+    setTimeout(function(){
+      let title = mainWindow.webContents.getTitle();
+      if(title.indexOf("▶") !== -1){
+        title = title.substring(2);
+      }else{
+        return;
+      }
+      let music = title.substring(0, title.indexOf("-")-1);
+      let author = title.substring(title.indexOf("-")+1, title.length-10);
+      let script = "notify('"+music+"', '"+author+"');";
+      mainWindow.webContents.executeJavaScript(script);
+      //console.log(script);
+    }, 1000);
   })
 
 

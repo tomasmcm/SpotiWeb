@@ -46,11 +46,13 @@ switch (process.platform) {
 let mainWindow;
 
 // Quit when all windows are closed and no other one is listening to this.
-app.on('window-all-closed', function () {
-  if (app.listeners('window-all-closed').length === 1 && !option.interactive) {
-    app.quit()
+app.on('window-all-closed', function() {
+  // On OS X it is common for applications and their menu bar
+  // to stay active until the user quits explicitly with Cmd + Q
+  if (process.platform !== 'darwin') {
+    app.quit();
   }
-})
+});
 
 app.on('will-quit', function() {
   // Unregister all shortcuts.

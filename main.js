@@ -6,6 +6,8 @@ const BrowserWindow = electron.BrowserWindow;
 const globalShortcut = electron.globalShortcut;
 const ipcMain = electron.ipcMain;
 const localshortcut = require('electron-localshortcut');
+const shell = electron.shell
+const Menu = electron.Menu;
 
 
 switch (process.platform) {
@@ -151,3 +153,149 @@ app.on('ready', function() {
 function simulateClick(command) {
     mainWindow.webContents.executeJavaScript("playerKey('" + command + "')");
 }
+
+
+app.once('ready', function () {
+  if (Menu.getApplicationMenu()) return
+
+  var template = [
+    {
+      label: 'View',
+      submenu: [
+        {
+          label: 'Reload',
+          accelerator: 'CmdOrCtrl+R',
+          click: function (item, focusedWindow) {
+            if (focusedWindow) focusedWindow.reload()
+          }
+        },
+        {
+          label: 'Toggle Full Screen',
+          accelerator: (function () {
+            return (process.platform === 'darwin') ? 'Ctrl+Command+F' : 'F11'
+          })(),
+          click: function (item, focusedWindow) {
+            if (focusedWindow) focusedWindow.setFullScreen(!focusedWindow.isFullScreen())
+          }
+        }
+      ]
+    },
+    {
+      label: 'Player',
+      submenu: [
+        {
+          label: 'Play/Pause',
+          accelerator: 'MediaPlayPause',
+          click: function () {
+            simulateClick("play-pause");
+          }
+        },
+        {
+          label: 'Next',
+          accelerator: 'MediaNextTrack',
+          click: function () {
+            simulateClick("next");
+          }
+        },
+        {
+          label: 'Previous',
+          accelerator: 'MediaPreviousTrack',
+          click: function () {
+            simulateClick("previous");
+          }
+        }
+      ]
+    },
+    {
+      label: 'Window',
+      role: 'window',
+      submenu: [
+        {
+          label: 'Minimize',
+          accelerator: 'CmdOrCtrl+M',
+          role: 'minimize'
+        },
+        {
+          label: 'Close',
+          accelerator: 'CmdOrCtrl+W',
+          role: 'close'
+        }
+      ]
+    },
+    {
+      label: 'Help',
+      role: 'help',
+      submenu: [
+        {
+          label: 'Learn More',
+          click: function () {
+            shell.openExternal('https://github.com/tomasmcm/SpotiWeb')
+          }
+        },
+        {
+          label: 'Search Issues',
+          click: function () {
+            shell.openExternal('https://github.com/tomasmcm/SpotiWeb/issues')
+          }
+        }
+      ]
+    }
+  ]
+
+  if (process.platform === 'darwin') {
+    template.unshift({
+      label: 'SpotiWeb',
+      submenu: [
+        {
+          label: 'About SpotiWeb',
+          role: 'about'
+        },
+        {
+          type: 'separator'
+        },
+        {
+          label: 'Services',
+          role: 'services',
+          submenu: []
+        },
+        {
+          type: 'separator'
+        },
+        {
+          label: 'Hide SpotiWeb',
+          accelerator: 'Command+H',
+          role: 'hide'
+        },
+        {
+          label: 'Hide Others',
+          accelerator: 'Command+Alt+H',
+          role: 'hideothers'
+        },
+        {
+          label: 'Show All',
+          role: 'unhide'
+        },
+        {
+          type: 'separator'
+        },
+        {
+          label: 'Quit',
+          accelerator: 'Command+Q',
+          click: function () { app.quit() }
+        }
+      ]
+    })
+    template[3].submenu.push(
+      {
+        type: 'separator'
+      },
+      {
+        label: 'Bring All to Front',
+        role: 'front'
+      }
+    )
+  }
+
+  var menu = Menu.buildFromTemplate(template)
+  Menu.setApplicationMenu(menu)
+})

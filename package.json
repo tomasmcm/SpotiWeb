@@ -20,7 +20,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/atom/electron-quick-start.git"
+    "url": "git+https://github.com/tomasmcm/SpotiWeb.git"
   },
   "keywords": [
     "Electron",
@@ -31,9 +31,11 @@
   "license": "CC0-1.0",
   "homepage": "https://github.com/tomasmcm/SpotiWeb",
   "dependencies": {
-    "electron-builder": "^2.6.0",
-    "electron-packager": "^5.2.0",
-    "electron-prebuilt": "^0.36.2",
-    "path": "^0.12.7"
+    "electron-packager": "^6.0.2",
+    "electron-prebuilt": "^0.37.6",
+    "events": "^1.1.0",
+    "got": "^6.3.0",
+    "path": "^0.12.7",
+    "semver": "^5.1.0"
   }
 }

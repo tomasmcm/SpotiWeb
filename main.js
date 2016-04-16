@@ -169,11 +169,14 @@ app.once('ready', function () {
       label: 'Player',
       submenu: [
         {
-          label: 'Play/Pause',
+          label: 'Play / Pause',
           accelerator: 'MediaPlayPause',
           click: function () {
             simulateClick("play-pause");
           }
+        },
+        {
+          type: 'separator'
         },
         {
           label: 'Next',
@@ -181,6 +184,9 @@ app.once('ready', function () {
           click: function () {
             simulateClick("next");
           }
+        },
+        {
+          type: 'separator'
         },
         {
           label: 'Previous',

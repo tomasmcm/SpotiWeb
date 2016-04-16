@@ -16,9 +16,11 @@ Check [releases](https://github.com/tomasmcm/SpotiWeb/releases) for the latest v
 
 <br>
 ### Future Improvements
-* Custom menu
-* Fix http errors when loading images
-* Allow fullscreen mode
+- [x] Custom menu
+- [x] Fix http errors when loading images
+- [x] Allow fullscreen mode
+- [x] Update Checker
+- [ ] ...
 
 <br>
 ### _I'm old school and I want to compile it myself_
@@ -75,10 +77,11 @@ $ npm run build:linux
 ```
 
 <br>
-### Contributions
+### Related Work
 * [Electron](http://electron.atom.io)
 * [beaufortfrancois - Spotify Hotkeys](https://github.com/beaufortfrancois/spotify-hotkeys-chrome-extension)
 * [hokein - Electron Notifications](https://github.com/hokein/electron-sample-apps/tree/master/notifications)
+* [jenslind - Electron-gh-releases](https://github.com/jenslind/electron-gh-releases)
 
 <br>
 ### Third Party

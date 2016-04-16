@@ -5,7 +5,6 @@ const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
 const globalShortcut = electron.globalShortcut;
 const ipcMain = electron.ipcMain;
-const localshortcut = require('electron-localshortcut');
 const shell = electron.shell
 const Menu = electron.Menu;
 
@@ -101,18 +100,6 @@ app.on('ready', function() {
   mainWindow.on('closed', function() {
     mainWindow = null;
     app.quit();
-  });
-
-  localshortcut.register(mainWindow, 'CmdOrCtrl+H', () => {
-    mainWindow.hide();
-  });
-  localshortcut.register(mainWindow, 'Cmd+Ctrl+F', () => {
-    if(mainWindow.isFullScreen()){
-      mainWindow.setFullScreen(false);
-    } else {
-      mainWindow.setFullScreen(true);
-    }
-
   });
 
   var registeredNext = globalShortcut.register('MediaNextTrack', function () {

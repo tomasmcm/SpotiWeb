@@ -18,20 +18,25 @@ updater.check();
 
 let flashPath = path.join(path.resolve(__dirname, '../'), '/app.asar.unpacked/plugins/');
 
+process.argv.forEach(function (arg, index, array) {
+  if (arg === 'dev') {
+    flashPath = path.join(__dirname, '/plugins/');
+  }
+});
 
 switch (process.platform) {
   case 'win32':
   case 'win64':
-    app.commandLine.appendSwitch('ppapi-flash-path', path.join(__dirname, '/plugins/pepflashplayer.dll') );
+    app.commandLine.appendSwitch('ppapi-flash-path', path.join(flashPath, 'pepflashplayer.dll') );
     app.commandLine.appendSwitch('ppapi-flash-version', '21.0.0.216');
     break;
   case 'linux':
-    app.commandLine.appendSwitch('ppapi-flash-path', path.join(__dirname, '/plugins/libpepflashplayer.so') );
+    app.commandLine.appendSwitch('ppapi-flash-path', path.join(flashPath, 'libpepflashplayer.so') );
     app.commandLine.appendSwitch('ppapi-flash-version', '21.0.0.216');
     break;
   case 'darwin':
   default:
-    app.commandLine.appendSwitch('ppapi-flash-path', path.join(__dirname, '/plugins/PepperFlashPlayer.plugin') );
+    app.commandLine.appendSwitch('ppapi-flash-path', path.join(flashPath, 'PepperFlashPlayer.plugin') );
     app.commandLine.appendSwitch('ppapi-flash-version', '21.0.0.216');
 }
 

@@ -59,15 +59,13 @@ app.on('ready', function() {
     width: 1024,
     height: 680,
     frame: false,
-    nodeIntegration: false,
-    webSecurity: false,
     fullscreenable: true,
-    allowDisplayingInsecureContent: true,
-    allowRunningInsecureContent: true,
     icon: __dirname + '/assets/icon.png',
-    preload: __dirname+'/preload.js',
-    'web-preferences': {
-      'plugins': true
+    webPreferences: {
+      nodeIntegration: false,
+      plugins: true,
+      preload: __dirname+'/preload.js',
+      allowDisplayingInsecureContent: true
     }
   });
   //mainWindow.maximize();

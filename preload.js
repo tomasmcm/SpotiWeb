@@ -19,4 +19,5 @@ window.onload = function(){
   var draggableArea = document.createElement('div');
   draggableArea.style.cssText = 'position:absolute;width:100%;height:80px;left:0px;top:0px;-webkit-app-region:drag;';
   document.body.appendChild(draggableArea);
+  document.getElementsByTagName("html")[0].style.cssText += "overflow: hidden;height: 100%;";
 }

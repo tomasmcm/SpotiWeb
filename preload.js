@@ -24,7 +24,7 @@ window.onload = function(){
   document.getElementById('now-playing-widgets').style.cssText += "display: none;";
 
   setInterval(function(){
-    if(document.getElementById('modal-notification-area').style.display !== 'none'){
+    if(document.getElementById('modal-notification-area').style.display === 'block'){
       remote.getCurrentWindow().reload();
     }
     if( (document.getElementById('app-player').contentDocument.getElementById('track-name').getElementsByTagName("a")[0].href).indexOf("adclick") > -1 ){

@@ -27,6 +27,13 @@ window.onload = function(){
     if(document.getElementById('modal-notification-area').style.display !== 'none'){
       remote.getCurrentWindow().reload();
     }
+    if( (document.getElementById('app-player').contentDocument.getElementById('track-name').getElementsByTagName("a")[0].href).indexOf("adclick") > -1 ){
+      remote.getCurrentWebContents().setAudioMuted(true);
+    } else{
+      if( remote.getCurrentWebContents().isAudioMuted() ){
+        remote.getCurrentWebContents().setAudioMuted(false);
+      }
+    }
   }, 1000);
 
 }

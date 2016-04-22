@@ -147,6 +147,17 @@ app.on('ready', function() {
     console.log('mediaprevioustrack registration bound!');
   }
 
+
+  var filter = {
+    urls: ["https://pubads.g.doubleclick.net/*", "https://video-ad-stats.googlesyndication.com/*"]
+  };
+  var ses = mainWindow.webContents.session;
+  ses.webRequest.onBeforeRequest(filter, function(details, callback) {
+    console.log(details.url);
+    callback({cancel: true});
+  });
+
+
 });
 
 //helper function to simulate button clicks on mainWindow

@@ -27,16 +27,16 @@ process.argv.forEach(function (arg, index, array) {
 switch (process.platform) {
   case 'win32':
   case 'win64':
-    app.commandLine.appendSwitch('ppapi-flash-path', path.join(flashPath, 'pepflashplayer.dll') );
+    app.commandLine.appendSwitch('ppapi-flash-path', path.join(flashPath, 'PepperFlashPlayer-win32.dll') );
     app.commandLine.appendSwitch('ppapi-flash-version', '21.0.0.216');
     break;
   case 'linux':
-    app.commandLine.appendSwitch('ppapi-flash-path', path.join(flashPath, 'libpepflashplayer.so') );
+    app.commandLine.appendSwitch('ppapi-flash-path', path.join(flashPath, 'PepperFlashPlayer-linux.so') );
     app.commandLine.appendSwitch('ppapi-flash-version', '21.0.0.216');
     break;
   case 'darwin':
   default:
-    app.commandLine.appendSwitch('ppapi-flash-path', path.join(flashPath, 'PepperFlashPlayer.plugin') );
+    app.commandLine.appendSwitch('ppapi-flash-path', path.join(flashPath, 'PepperFlashPlayer-mac.plugin') );
     app.commandLine.appendSwitch('ppapi-flash-version', '21.0.0.216');
 }
 

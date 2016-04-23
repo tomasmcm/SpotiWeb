@@ -23,6 +23,20 @@ window.onload = function(){
   document.getElementsByTagName("html")[0].style.cssText += "overflow: hidden;height: 100%;";
   document.getElementById('now-playing-widgets').style.cssText += "display: none;";
 
+  document.addEventListener('scroll', function(e) {
+    console.log(e);
+  });
+
+  setInterval(function(){
+    var appIframes = document.querySelectorAll("[id^=collection-app-spotify]");
+    Array.prototype.filter.call(appIframes, function(element){
+      var elementAd = element.contentDocument.querySelector(".ads-leaderboard-container");
+      if(elementAd) return element.contentDocument.querySelector(".ads-leaderboard-container").style.display="none";
+      else return false;
+    });
+  }, 3000);
+
+
   if (process.platform === 'darwin') document.querySelector('.main-menu.narrow-menu').style.paddingTop = "15px";
 
   setInterval(function(){

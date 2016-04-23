@@ -23,6 +23,8 @@ window.onload = function(){
   document.getElementsByTagName("html")[0].style.cssText += "overflow: hidden;height: 100%;";
   document.getElementById('now-playing-widgets').style.cssText += "display: none;";
 
+  if (process.platform === 'darwin') document.querySelector('.main-menu.narrow-menu').style.paddingTop = "15px";
+
   setInterval(function(){
     if(document.getElementById('modal-notification-area').style.display === 'block'){
       remote.getCurrentWindow().reload();

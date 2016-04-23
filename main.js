@@ -76,6 +76,7 @@ app.on('ready', function() {
     width: 1024,
     height: 680,
     //frame: false,
+    titleBarStyle: "hidden",
     fullscreenable: true,
     icon: __dirname + '/assets/icon.png',
     webPreferences: {

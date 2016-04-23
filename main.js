@@ -75,7 +75,7 @@ app.on('ready', function() {
   mainWindow = new BrowserWindow({
     width: 1024,
     height: 680,
-    frame: false,
+    //frame: false,
     fullscreenable: true,
     icon: __dirname + '/assets/icon.png',
     webPreferences: {

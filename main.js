@@ -109,7 +109,7 @@ app.on('ready', function() {
       mainWindow.webContents.executeJavaScript(script);
       //console.log(script);
     }, 1000);
-  })
+  });
 
 
   // Emitted when the window is closed.
@@ -118,6 +118,9 @@ app.on('ready', function() {
     app.quit();
   });
 
+  mainWindow.webContents.on("crashed", () => {
+    mainWindow.reload();
+  });
   var registeredNext = globalShortcut.register('MediaNextTrack', function () {
     console.log('medianexttrack pressed');
     simulateClick("next");

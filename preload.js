@@ -23,10 +23,6 @@ window.onload = function(){
   document.getElementsByTagName("html")[0].style.cssText += "overflow: hidden;height: 100%;";
   document.getElementById('now-playing-widgets').style.cssText += "display: none;";
 
-  document.addEventListener('scroll', function(e) {
-    console.log(e);
-  });
-
   setInterval(function(){
     var appIframes = document.querySelectorAll("[id^=collection-app-spotify]");
     Array.prototype.filter.call(appIframes, function(element){

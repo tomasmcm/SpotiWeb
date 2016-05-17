@@ -160,7 +160,11 @@ app.on('ready', function() {
 
 
   var filter = {
-    urls: ["https://pubads.g.doubleclick.net/*", "https://video-ad-stats.googlesyndication.com/*"]
+    urls: ["https://pubads.g.doubleclick.net/*", "https://video-ad-stats.googlesyndication.com/*",
+    "https://simage2.pubmatic.com/AdServer/*",
+    "https://pagead2.googlesyndication.com/*",
+    "https://securepubads.g.doubleclick.net/*",
+    "https://googleads.g.doubleclick.net/*"]
   };
   var ses = mainWindow.webContents.session;
   ses.webRequest.onBeforeRequest(filter, function(details, callback) {

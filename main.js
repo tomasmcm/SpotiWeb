@@ -121,6 +121,13 @@ app.on('ready', function() {
   mainWindow.webContents.on("crashed", () => {
     mainWindow.reload();
   });
+
+  mainWindow.webContents.on("will-navigate", (event, url) => {
+    if(url.indexOf('file:/') > -1){
+      event.preventDefault();
+    }
+  });
+
   var registeredNext = globalShortcut.register('MediaNextTrack', function () {
     console.log('medianexttrack pressed');
     simulateClick("next");

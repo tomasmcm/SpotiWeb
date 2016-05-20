@@ -14,7 +14,7 @@ Why would you use this app instead of [these](https://github.com/search?utf8=✓
 
 Check [releases](https://github.com/tomasmcm/SpotiWeb/releases) for the latest version.
 
-View [Downloads Count](http://s.codepen.io/tomasmcm/debug/EKBLxL){:target="_blank"}.
+View <a href="http://s.codepen.io/tomasmcm/debug/EKBLxL" target="_blank">Downloads Count</a>.
 
 <br>
 ### Future Improvements

@@ -14,6 +14,8 @@ Why would you use this app instead of [these](https://github.com/search?utf8=✓
 
 Check [releases](https://github.com/tomasmcm/SpotiWeb/releases) for the latest version.
 
+View <a href="#" onClick="window.open('http://s.codepen.io/tomasmcm/debug/EKBLxL','pagename','resizable,height=400,width=620'); return false;">Downloads Count</a>.
+
 <br>
 ### Future Improvements
 - [x] Custom menu

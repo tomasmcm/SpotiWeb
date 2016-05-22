@@ -105,10 +105,7 @@ app.on('ready', function() {
       }else{
         return;
       }
-      let music = title.substring(0, title.indexOf("-")-1);
-      let author = title.substring(title.indexOf("-")+1, title.length-10);
-      let script = "notify('"+music+"', '"+author+"');";
-      mainWindow.webContents.executeJavaScript(script);
+      mainWindow.webContents.executeJavaScript("notify();");
       //console.log(script);
     }, 2000);
   });

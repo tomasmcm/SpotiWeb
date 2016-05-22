@@ -1,10 +1,12 @@
 var ipcRenderer = require('electron').ipcRenderer;
 var remote = require('electron').remote;
 
-window.notify = function(music, author) {
+window.notify = function() {
   var imageURL = document.getElementById('app-player').contentDocument.getElementById('cover-art').querySelector(".sp-image-img").style.backgroundImage.slice(5, -2);
+  var title = document.getElementById('app-player').contentDocument.getElementById('track-name').querySelector("a").text;
+  var author = document.getElementById('app-player').contentDocument.getElementById('track-artist').querySelector("a").text;
 
-  var notification = new Notification(music, { title: music, body: author, icon: imageURL, silent: true });
+  var notification = new Notification(title, { title: title, body: author, icon: imageURL, silent: true });
 
   notification.onclick = function(event) {
     ipcRenderer.send('show');

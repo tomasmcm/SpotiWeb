@@ -110,7 +110,7 @@ app.on('ready', function() {
       let script = "notify('"+music+"', '"+author+"');";
       mainWindow.webContents.executeJavaScript(script);
       //console.log(script);
-    }, 1000);
+    }, 2000);
   });
 
 

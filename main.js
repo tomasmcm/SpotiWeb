@@ -120,7 +120,11 @@ app.on('ready', function() {
     app.quit();
   });
 
-  mainWindow.webContents.on("crashed", () => {
+  mainWindow.webContents.on('crashed plugin-crashed unresponsive', () => {
+    mainWindow.reload();
+  });
+
+  app.on('gpu-process-crashed', () => {
     mainWindow.reload();
   });
 

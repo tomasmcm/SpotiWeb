@@ -6,9 +6,9 @@
   "scripts": {
     "start": "electron main.js dev",
     "package": "npm run package:mac && npm run package:win && npm run package:linux",
-    "package:mac": "electron-packager ./ SpotiWeb --platform=darwin --arch=all --version=0.37.6 --app-version=$npm_package_version --build-version=$npm_package_version --out=./releases --asar=true --asar-unpack-dir=plugins --overwrite --icon=./assets/icon.icns --ignore=\"releases|dist|npm-debug.log|node_modules/electron-(builder|packager|prebuilt)|plugins/PepperFlashPlayer-(win32.dll|linux.so)\"",
-    "package:win": "electron-packager ./ SpotiWeb --platform=win32 --arch=ia32 --version=0.37.6 --app-version=$npm_package_version --build-version=$npm_package_version --out=./releases --asar=true --asar-unpack-dir=plugins --overwrite --icon=./assets/icon.icns --ignore=\"releases|dist|npm-debug.log|node_modules/electron-(builder|packager|prebuilt)|plugins/PepperFlashPlayer-(mac.plugin|linux.so)\"",
-    "package:linux": "electron-packager ./ SpotiWeb --platform=linux --arch=all --version=0.37.6 --app-version=$npm_package_version --build-version=$npm_package_version --out=./releases --asar=true --asar-unpack-dir=plugins --overwrite --icon=./assets/icon.icns --ignore=\"releases|dist|npm-debug.log|node_modules/electron-(builder|packager|prebuilt)|plugins/PepperFlashPlayer-(mac.plugin|win32.dll)\"",
+    "package:mac": "electron-packager ./ SpotiWeb --platform=darwin --arch=all --version=1.1.1 --app-version=$npm_package_version --build-version=$npm_package_version --out=./releases --asar=true --asar-unpack-dir=plugins --overwrite --icon=./assets/icon.icns --ignore=\"releases|dist|npm-debug.log|node_modules/electron-(builder|packager|prebuilt)|plugins/PepperFlashPlayer-(win32.dll|linux.so)\"",
+    "package:win": "electron-packager ./ SpotiWeb --platform=win32 --arch=ia32 --version=1.1.1 --app-version=$npm_package_version --build-version=$npm_package_version --out=./releases --asar=true --asar-unpack-dir=plugins --overwrite --icon=./assets/icon.icns --ignore=\"releases|dist|npm-debug.log|node_modules/electron-(builder|packager|prebuilt)|plugins/PepperFlashPlayer-(mac.plugin|linux.so)\"",
+    "package:linux": "electron-packager ./ SpotiWeb --platform=linux --arch=all --version=1.1.1 --app-version=$npm_package_version --build-version=$npm_package_version --out=./releases --asar=true --asar-unpack-dir=plugins --overwrite --icon=./assets/icon.icns --ignore=\"releases|dist|npm-debug.log|node_modules/electron-(builder|packager|prebuilt)|plugins/PepperFlashPlayer-(mac.plugin|win32.dll)\"",
     "zip:mac": "./mac.sh",
     "zip:win": "./win.sh",
     "zip:linux": "./linux.sh",
@@ -31,11 +31,14 @@
   "license": "CC0-1.0",
   "homepage": "https://github.com/tomasmcm/SpotiWeb",
   "dependencies": {
-    "electron-packager": "^6.0.2",
-    "electron-prebuilt": "^0.37.6",
+    "electron-packager": "^7.0.2",
+    "electron-prebuilt": "^1.1.1",
     "events": "^1.1.0",
     "got": "^6.3.0",
     "path": "^0.12.7",
     "semver": "^5.1.0"
+  },
+  "devDependencies": {
+    "devtron": "^1.1.2"
   }
 }

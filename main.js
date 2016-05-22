@@ -79,6 +79,7 @@ app.on('ready', function() {
     titleBarStyle: "hidden",
     fullscreenable: true,
     icon: __dirname + '/assets/icon.png',
+    backgroundColor: '#121314',
     webPreferences: {
       nodeIntegration: false,
       plugins: true,

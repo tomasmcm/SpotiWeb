@@ -83,8 +83,9 @@ app.on('ready', function() {
     webPreferences: {
       nodeIntegration: false,
       plugins: true,
-      preload: __dirname+'/preload.js',
-      allowDisplayingInsecureContent: true
+      preload: __dirname + '/preload.js',
+      allowDisplayingInsecureContent: true,
+      scrollBounce: false
     }
   });
   //mainWindow.maximize();

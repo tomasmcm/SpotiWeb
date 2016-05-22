@@ -1,5 +1,5 @@
 var ipcRenderer = require('electron').ipcRenderer;
-var remote = require('remote');
+var remote = require('electron').remote;
 
 window.notify = function(music, author) {
   var imageURL = document.getElementById('app-player').contentDocument.getElementById('cover-art').querySelector(".sp-image-img").style.backgroundImage.slice(5, -2);

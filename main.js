@@ -168,7 +168,7 @@ app.on('ready', function() {
   };
   var ses = mainWindow.webContents.session;
   ses.webRequest.onBeforeRequest(filter, function(details, callback) {
-    console.log(details.url);
+    //console.log(details.url);
     callback({cancel: true});
   });
 

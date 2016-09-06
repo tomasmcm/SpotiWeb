@@ -22,6 +22,9 @@ View <a href="http://s.codepen.io/tomasmcm/debug/EKBLxL" target="_blank">Downloa
 - [x] Fix http errors when loading images
 - [x] Allow fullscreen mode
 - [x] Update Checker
+- [ ] Lyrics Search
+- [ ] Custom Keyboard Shortcuts
+- [ ] Chromecast Support
 - [ ] ...
 
 <br>

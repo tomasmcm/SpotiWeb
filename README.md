@@ -1,6 +1,4 @@
-# SpotiWeb
-
-[![Github Releases](https://img.shields.io/github/downloads/tomasmcm/SpotiWeb/total.svg?maxAge=2592000?style=flat-square)](https://github.com/tomasmcm/SpotiWeb/releases)
+# SpotiWeb &nbsp; [![Github Releases](https://img.shields.io/github/downloads/tomasmcm/SpotiWeb/total.svg?maxAge=2592000?style=flat-square)](https://github.com/tomasmcm/SpotiWeb/releases)
 
 **Electron wrapper of play.spotify.com**
 

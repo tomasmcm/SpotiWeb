@@ -77,14 +77,14 @@ app.on('ready', function() {
   // Create the browser window.
   mainWindow = new BrowserWindow({
     width: 1024,
-    height: 680,
+    height: (process.platform === 'darwin') ? 680 : (process.platform === 'linux') ? 700 : 740,
     //frame: false,
     titleBarStyle: "hidden",
     fullscreenable: true,
     icon: __dirname + '/assets/icon.png',
     backgroundColor: '#121314',
     webPreferences: {
-      nodeIntegration: false,
+      nodeIntegration: true,
       plugins: true,
       preload: __dirname + '/preload.js',
       allowDisplayingInsecureContent: true,
@@ -92,6 +92,8 @@ app.on('ready', function() {
     }
   });
   //mainWindow.maximize();
+
+  loadLocalPage(mainWindow, 'loading.html');
 
   // and load the SpotifyWebDesktop website.
   mainWindow.loadURL("https://play.spotify.com");
@@ -130,9 +132,19 @@ app.on('ready', function() {
     mainWindow.reload();
   });
 
+  ipcMain.on('reload', () => {
+    mainWindow.loadURL("https://play.spotify.com");
+  });
+
   mainWindow.webContents.on("will-navigate", (event, url) => {
     if(url.indexOf('file:/') > -1){
       event.preventDefault();
+    }
+  });
+
+  mainWindow.webContents.on("did-fail-load", (event, errorCode) => {
+    if(errorCode == -106) {
+      loadLocalPage(mainWindow, 'noInternet.html');
     }
   });
 
@@ -197,7 +209,16 @@ app.on('ready', function() {
 
 //helper function to simulate button clicks on mainWindow
 function simulateClick(command) {
-    mainWindow.webContents.executeJavaScript("playerKey('" + command + "')");
+  mainWindow.webContents.executeJavaScript("playerKey('" + command + "')");
+}
+
+function loadLocalPage(win, file){
+  let url = require('url').format({
+    protocol: 'file',
+    slashes: true,
+    pathname: require('path').join(__dirname, 'assets/', file)
+  });
+  win.loadURL(url);
 }
 
 

@@ -106,8 +106,6 @@ window.onload = function(){
     document.body.appendChild(draggableArea);
   }
 
-  window.appendLyricsButton();
-
   //document.getElementsByTagName("html")[0].style.cssText += "overflow: hidden;height: 100%;";
   document.getElementById('now-playing-widgets').style.cssText += "display: none;";
 

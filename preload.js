@@ -1,7 +1,7 @@
 var ipcRenderer = require('electron').ipcRenderer;
 var remote = require('electron').remote;
 var currentImage = null;
-var notification;
+var notification, notificationTimeout=null;
 
 window.setCurrentImage = function(val){
   currentImage = val;
@@ -21,6 +21,10 @@ window.notify = function() {
 
   if(process.platform === 'linux') {
     try { notification.close(); } catch (e) { }
+
+    if(notificationTimeout != null){
+      clearTimeout(notificationTimeout);
+    }
   }
 
   notification = new Notification(title, { title: title, body: author, icon: imageURL, silent: true });
@@ -31,7 +35,7 @@ window.notify = function() {
 
   if(process.platform === 'linux') {
     notification.onshow = function(event) {
-      setTimeout(function(){
+      notificationTimeout = setTimeout(function(){
         notification.close();
       },5000);
     }

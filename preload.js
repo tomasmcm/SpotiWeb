@@ -1,15 +1,40 @@
 var ipcRenderer = require('electron').ipcRenderer;
 var remote = require('electron').remote;
+var currentImage = null;
+var notification;
+
+window.setCurrentImage = function(val){
+  currentImage = val;
+};
 
 window.notify = function() {
-  var imageURL = document.getElementById('app-player').contentDocument.getElementById('cover-art').querySelector(".sp-image-img").style.backgroundImage.slice(5, -2);
+  var imageURL;
+  if(currentImage == null) {
+    imageURL = document.getElementById('app-player').contentDocument.getElementById('cover-art').querySelector(".sp-image-img").style.backgroundImage.slice(5, -2);
+  } else {
+    imageURL = currentImage;
+    currentImage = null;
+  }
+
   var title = document.getElementById('app-player').contentDocument.getElementById('track-name').querySelector("a").text;
   var author = document.getElementById('app-player').contentDocument.getElementById('track-artist').querySelector("a").text;
 
-  var notification = new Notification(title, { title: title, body: author, icon: imageURL, silent: true });
+  if(process.platform === 'linux') {
+    try { notification.close(); } catch (e) { }
+  }
+
+  notification = new Notification(title, { title: title, body: author, icon: imageURL, silent: true });
 
   notification.onclick = function(event) {
     ipcRenderer.send('show');
+  }
+
+  if(process.platform === 'linux') {
+    notification.onshow = function(event) {
+      setTimeout(function(){
+        notification.close();
+      },5000);
+    }
   }
 }
 

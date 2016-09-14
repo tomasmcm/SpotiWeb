@@ -15,6 +15,9 @@ let options = {
 }
 const updater = new updateUtil(options);
 updater.check();
+let checkForImageDownload = false;
+let notificationTimeout = 2000;
+if(process.platform === 'linux') notificationTimeout = 1000;
 
 let flashPath = path.join(path.resolve(__dirname, '../'), '/app.asar.unpacked/plugins/');
 
@@ -98,6 +101,7 @@ app.on('ready', function() {
 
 
   mainWindow.on('page-title-updated', function(){
+    checkForImageDownload = true;
     setTimeout(function(){
       let title = mainWindow.webContents.getTitle();
       if(title.indexOf("▶") !== -1){
@@ -107,7 +111,8 @@ app.on('ready', function() {
       }
       mainWindow.webContents.executeJavaScript("notify();");
       //console.log(script);
-    }, 2000);
+      checkForImageDownload = false;
+    }, notificationTimeout);
   });
 
 
@@ -173,6 +178,18 @@ app.on('ready', function() {
   ses.webRequest.onBeforeRequest(filter, function(details, callback) {
     //console.log(details.url);
     callback({cancel: true});
+  });
+
+  var imageFilter = {
+    urls: ["http://o.scdn.co/300/*"]
+  };
+
+  ses.webRequest.onCompleted(imageFilter, function(details) {
+    //console.log(details.url);
+    if (checkForImageDownload) {
+      mainWindow.webContents.executeJavaScript("setCurrentImage('" + details.url + "')");
+      checkForImageDownload = false;
+    }
   });
 
 

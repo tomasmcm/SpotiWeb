@@ -72,6 +72,7 @@ ipcMain.on('show', function() {
 });
 
 global.currentSong = {title: "title", author: "author"};
+global.loadingGif = null;
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
@@ -250,14 +251,20 @@ app.on('ready', function() {
   });
 
   var imageFilter = {
-    urls: ["http://o.scdn.co/300/*"]
+    urls: ["http://o.scdn.co/300/*", "*/loading_throbber.gif"]
   };
 
   ses.webRequest.onCompleted(imageFilter, function(details) {
     //console.log(details.url);
-    if (checkForImageDownload) {
-      mainWindow.webContents.executeJavaScript("setCurrentImage('" + details.url + "')");
-      checkForImageDownload = false;
+    if((details.url).indexOf("loading_throbber.gif") != -1){
+      global.loadingGif = details.url;
+
+      mainWindow.webContents.executeJavaScript("appendLyricsButton();");
+    } else {
+      if (checkForImageDownload) {
+        mainWindow.webContents.executeJavaScript("setCurrentImage('" + details.url + "')");
+        checkForImageDownload = false;
+      }
     }
   });
 

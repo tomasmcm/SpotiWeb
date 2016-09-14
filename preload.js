@@ -69,7 +69,7 @@ window.updateLyricsButton = function(){
 
 window.appendLyricsButton = function(){
   var lyricsButton = document.createElement('div');
-  lyricsButton.innerHTML = '<div class="btn btn-small disabled" style="margin-top:10px;cursor:pointer;" id="lyrics__js"><span class="spoticon-messages-16"></span> Lyrics <div id="lyrics_loading__js" style="background: url(https://play.spotify.edgekey.net/client/e88b443/images/loading_throbber.gif);width:14px;height:14px;background-size:contain;display:none;vertical-align:text-bottom;"></div></div>';
+  lyricsButton.innerHTML = '<div class="btn btn-small disabled" style="margin-top:10px;cursor:pointer;" id="lyrics__js"><span class="spoticon-messages-16"></span> Lyrics <div id="lyrics_loading__js" style="background: url(' + remote.getGlobal('loadingGif') + ');width:14px;height:14px;background-size:contain;display:none;vertical-align:text-bottom;"></div></div>';
 
   try {
     document.getElementById('app-player').contentDocument.querySelector(".extra").appendChild(lyricsButton.childNodes[0]);

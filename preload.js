@@ -58,16 +58,22 @@ window.showLyrics = function(){
 }
 
 window.updateLyricsButton = function(){
-  var title = document.getElementById('app-player').contentDocument.getElementById('track-name').querySelector("a").text;
-  var lyricsButton = document.getElementById('app-player').contentDocument.querySelector("#lyrics__js");
-  if(title == " "){
-    if(!lyricsButton.classList.contains("disabled")){
-      lyricsButton.classList.add("disabled");
+  try {
+    var title = document.getElementById('app-player').contentDocument.getElementById('track-name').querySelector("a").text;
+    var lyricsButton = document.getElementById('app-player').contentDocument.querySelector("#lyrics__js");
+    if(title == " "){
+      if(!lyricsButton.classList.contains("disabled")){
+        lyricsButton.classList.add("disabled");
+      }
+    } else {
+      if(lyricsButton.classList.contains("disabled")){
+        lyricsButton.classList.remove("disabled");
+      }
     }
-  } else {
-    if(lyricsButton.classList.contains("disabled")){
-      lyricsButton.classList.remove("disabled");
-    }
+  } catch (e) {
+    setTimeout(function(){
+      window.updateLyricsButton();
+    }, 500);
   }
 }
 

@@ -47,6 +47,8 @@ switch (process.platform) {
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow;
+let lyricsWindow = null;
+let willQuit = false;
 
 // Quit when all windows are closed and no other one is listening to this.
 app.on('window-all-closed', function() {
@@ -69,6 +71,7 @@ ipcMain.on('show', function() {
     mainWindow.show();
 });
 
+global.currentSong = {title: "title", author: "author"};
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
@@ -103,6 +106,7 @@ app.on('ready', function() {
 
 
   mainWindow.on('page-title-updated', function(){
+    mainWindow.webContents.executeJavaScript("updateLyricsButton();");
     checkForImageDownload = true;
     setTimeout(function(){
       let title = mainWindow.webContents.getTitle();
@@ -121,6 +125,11 @@ app.on('ready', function() {
   // Emitted when the window is closed.
   mainWindow.on('closed', function() {
     mainWindow = null;
+    if(lyricsWindow != null){
+      willQuit = true;
+      try{ lyricsWindow.close(); } catch(e){}
+      lyricsWindow = null;
+    }
     app.quit();
   });
 
@@ -177,6 +186,54 @@ app.on('ready', function() {
   } else {
     console.log('mediaprevioustrack registration bound!');
   }
+
+  lyricsWindow = new BrowserWindow({
+    width: 500,
+    height: (process.platform === 'darwin') ? 680 : (process.platform === 'linux') ? 700 : 740,
+    parent: mainWindow,
+    modal: true,
+    show: false,
+    frame: true,
+    fullscreenable: false,
+    autoHideMenuBar: true,
+    webPreferences: {
+      nodeIntegration: false,
+      plugins: true,
+      allowDisplayingInsecureContent: true,
+      scrollBounce: false
+    }
+  });
+  lyricsWindow.setMenu(null);
+  lyricsWindow.setMenuBarVisibility(false);
+  lyricsWindow.on('close', function(event){
+    if(!willQuit){
+      event.preventDefault();
+      lyricsWindow.hide();
+    }
+  });
+
+  ipcMain.on('showLyrics', function() {
+      if(lyricsWindow != null){
+        lyricsWindow.hide();
+      }
+      let searchKey = global.currentSong.title + " " + global.currentSong.author;
+      let lyricsURL = "https://www.musixmatch.com/search/" + escape(searchKey);
+      lyricsWindow.loadURL(lyricsURL);
+
+      let lyricsReady = false;
+
+      lyricsWindow.webContents.on('dom-ready', function() {
+        if(!lyricsReady){
+          lyricsWindow.webContents.executeJavaScript("window.location = document.querySelector('.box-style-plain .media-card-title a').href;");
+          lyricsReady = true;
+        } else {
+          setTimeout(function(){
+            lyricsWindow.show();
+            mainWindow.webContents.executeJavaScript("lyricsLoaded();");
+          }, 800);
+        }
+      });
+  });
 
 
   var filter = {

@@ -98,6 +98,8 @@ window.appendLyricsButton = function(){
 
 
 window.onload = function(){
+  try { document.getElementById("has-account").click(); } catch (e) { }
+
   if (process.platform === 'darwin'){
     var draggableArea = document.createElement('div');
     draggableArea.style.cssText = 'position:absolute;width:100%;height:22px;left:0px;top:0px;-webkit-app-region:drag;';

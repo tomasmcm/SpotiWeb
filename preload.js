@@ -92,7 +92,7 @@ window.appendLyricsButton = function(){
         lyricsTimeout = setTimeout(function(){
           alert("No Lyrics Found...");
           lyricsLoaded();
-        },5000);
+        },10000);
       });
       window.updateLyricsButton();
     }, 0);

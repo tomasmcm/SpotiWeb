@@ -99,8 +99,10 @@ app.on('ready', function() {
 
   loadLocalPage(mainWindow, 'loading.html');
 
-  // and load the SpotifyWebDesktop website.
-  mainWindow.loadURL("https://play.spotify.com");
+  setTimeout(function(){
+    // and load the SpotifyWebDesktop website.
+    mainWindow.loadURL("https://play.spotify.com");
+  },200);
 
   // Open the DevTools.
   //mainWindow.webContents.openDevTools();

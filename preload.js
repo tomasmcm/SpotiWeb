@@ -1,7 +1,7 @@
 var ipcRenderer = require('electron').ipcRenderer;
 var remote = require('electron').remote;
 var currentImage = null;
-var notification, notificationTimeout=null;
+var notification, notificationTimeout=null, lyricsTimeout=null;
 
 window.setCurrentImage = function(val){
   currentImage = val;
@@ -48,6 +48,9 @@ window.playerKey = function(command){
 
 window.lyricsLoaded = function(){
   document.getElementById('app-player').contentDocument.querySelector("#lyrics_loading__js").style.display = "none";
+  if(lyricsTimeout != null){
+    clearTimeout(lyricsTimeout);
+  }
 }
 
 window.showLyrics = function(){
@@ -86,6 +89,10 @@ window.appendLyricsButton = function(){
     setTimeout(function(){
       document.getElementById('app-player').contentDocument.querySelector("#lyrics__js").addEventListener("click", function(){
         window.showLyrics();
+        lyricsTimeout = setTimeout(function(){
+          alert("No Lyrics Found...");
+          lyricsLoaded();
+        },5000);
       });
       window.updateLyricsButton();
     }, 0);
@@ -109,6 +116,9 @@ window.onload = function(){
   //document.getElementsByTagName("html")[0].style.cssText += "overflow: hidden;height: 100%;";
   document.getElementById('now-playing-widgets').style.cssText += "display: none;";
 
+  setTimeout(function(){
+    updateLyricsButton();
+  }, 500);
 
   if (process.platform === 'darwin') document.querySelector('.main-menu.narrow-menu').style.paddingTop = "15px";
 

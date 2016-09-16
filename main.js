@@ -231,6 +231,7 @@ app.on('ready', function() {
           lyricsWindow.webContents.executeJavaScript("window.location = document.querySelector('.box-style-plain .media-card-title a').href;");
           lyricsReady = true;
         } else {
+          lyricsReady = false;
           setTimeout(function(){
             lyricsWindow.show();
             mainWindow.webContents.executeJavaScript("lyricsLoaded();");

@@ -109,19 +109,20 @@ app.on('ready', function() {
 
 
   mainWindow.on('page-title-updated', function(){
-    mainWindow.webContents.executeJavaScript("updateLyricsButton();");
-    checkForImageDownload = true;
-    setTimeout(function(){
-      let title = mainWindow.webContents.getTitle();
-      if(title.indexOf("▶") !== -1){
+    let title = mainWindow.webContents.getTitle();
+    if(title.indexOf("▶") !== -1){
+      mainWindow.webContents.executeJavaScript("updateLyricsButton();");
+      checkForImageDownload = true;
+      setTimeout(function(){
+        let title = mainWindow.webContents.getTitle();
         title = title.substring(2);
-      }else{
-        return;
-      }
-      mainWindow.webContents.executeJavaScript("notify();");
-      //console.log(script);
-      checkForImageDownload = false;
-    }, notificationTimeout);
+        mainWindow.webContents.executeJavaScript("notify();");
+        //console.log(script);
+        checkForImageDownload = false;
+      }, notificationTimeout);
+    }else{
+      return;
+    }
   });
 
 

@@ -8,6 +8,20 @@ const ipcMain = electron.ipcMain;
 const shell = electron.shell
 const Menu = electron.Menu;
 const updateUtil = require('./utils');
+const Config = require('electron-config');
+
+global.configName = 'spotiweb-config';
+const config = new Config({
+  defaults: {
+    shortcuts: {
+      next: "MediaNextTrack",
+      prev: "MediaPreviousTrack",
+      play: "MediaPlayPause"
+    }
+  },
+  name: global.configName
+});
+
 let options = {
   repo: 'tomasmcm/SpotiWeb',
   name: 'SpotiWeb',
@@ -48,6 +62,7 @@ switch (process.platform) {
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow;
 let lyricsWindow = null;
+let settingsWindow = null;
 let willQuit = false;
 
 // Quit when all windows are closed and no other one is listening to this.
@@ -73,6 +88,59 @@ ipcMain.on('show', function() {
 
 global.currentSong = {title: "title", author: "author"};
 global.loadingGif = null;
+
+ipcMain.on('set-keyboard-shortcuts', (e) => {
+  var result = setKeyboardShortcuts();
+  e.sender.send('set-shortcuts-success', result);
+});
+
+function setKeyboardShortcuts() {
+  const shortcuts = config.get('shortcuts');
+  const next = shortcuts.next;
+  const prev = shortcuts.prev;
+  const play = shortcuts.play;
+
+  // Unregister all the shortcuts in case we've already called this function
+  globalShortcut.unregisterAll();
+
+  try {
+    var registeredNext = globalShortcut.register(next, function () {
+      console.log('medianexttrack pressed');
+      simulateClick("next");
+    });
+    if (!registeredNext) {
+      console.log('medianexttrack registration failed');
+    } else {
+      console.log('medianexttrack registration bound!');
+    }
+
+    var registeredPlay = globalShortcut.register(play, function () {
+      console.log('mediaplaypause pressed');
+      simulateClick("play-pause");
+    });
+    if (!registeredPlay) {
+      console.log('mediaplaypause registration failed');
+    } else {
+      console.log('mediaplaypause registration bound!');
+    }
+
+    var registeredPrevious = globalShortcut.register(prev, function () {
+      console.log('mediaprevioustrack pressed');
+      simulateClick("previous");
+    });
+    if (!registeredPrevious) {
+      console.log('mediaprevioustrack registration failed');
+    } else {
+      console.log('mediaprevioustrack registration bound!');
+    }
+
+    return true;
+
+  } catch (err) {
+    // Probably an accelerator string is invalid
+    return false;
+  }
+}
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
@@ -105,7 +173,7 @@ app.on('ready', function() {
   },200);
 
   // Open the DevTools.
-  //mainWindow.webContents.openDevTools();
+  // mainWindow.webContents.openDevTools();
 
 
   mainWindow.on('page-title-updated', function(){
@@ -133,6 +201,8 @@ app.on('ready', function() {
       willQuit = true;
       try{ lyricsWindow.close(); } catch(e){}
       lyricsWindow = null;
+      try{ settingsWindow.close(); } catch(e){}
+      settingsWindow = null;
     }
     app.quit();
   });
@@ -161,35 +231,7 @@ app.on('ready', function() {
     }
   });
 
-  var registeredNext = globalShortcut.register('MediaNextTrack', function () {
-    console.log('medianexttrack pressed');
-    simulateClick("next");
-  });
-  if (!registeredNext) {
-    console.log('medianexttrack registration failed');
-  } else {
-    console.log('medianexttrack registration bound!');
-  }
-
-  var registeredPlay = globalShortcut.register('MediaPlayPause', function () {
-    console.log('mediaplaypause pressed');
-    simulateClick("play-pause");
-  });
-  if (!registeredPlay) {
-    console.log('mediaplaypause registration failed');
-  } else {
-    console.log('mediaplaypause registration bound!');
-  }
-
-  var registeredPrevious = globalShortcut.register('MediaPreviousTrack', function () {
-    console.log('mediaprevioustrack pressed');
-    simulateClick("previous");
-  });
-  if (!registeredPrevious) {
-    console.log('mediaprevioustrack registration failed');
-  } else {
-    console.log('mediaprevioustrack registration bound!');
-  }
+  setKeyboardShortcuts();
 
   lyricsWindow = new BrowserWindow({
     width: 500,
@@ -240,6 +282,23 @@ app.on('ready', function() {
       });
   });
 
+  settingsWindow = new BrowserWindow({
+    width: 800,
+    height: 480,
+    parent: mainWindow,
+    show: false,
+    frame: true,
+    fullscreenable: false,
+    autoHideMenuBar: true
+  });
+  settingsWindow.setMenu(null);
+  settingsWindow.setMenuBarVisibility(false);
+  settingsWindow.on('close', function(event){
+    if(!willQuit){
+      event.preventDefault();
+      settingsWindow.hide();
+    }
+  });
 
   var filter = {
     urls: ["https://pubads.g.doubleclick.net/*", "https://video-ad-stats.googlesyndication.com/*",
@@ -275,6 +334,22 @@ app.on('ready', function() {
 
 });
 
+function showSettings() {
+  if (settingsWindow.isVisible()) {
+    settingsWindow.restore();
+    settingsWindow.focus();
+    return;
+  }
+
+  loadLocalPage(settingsWindow, 'settings.html');
+
+  settingsWindow.webContents.on('dom-ready', () => {
+    settingsWindow.show();
+  });
+
+  // settingsWindow.webContents.openDevTools();
+}
+
 //helper function to simulate button clicks on mainWindow
 function simulateClick(command) {
   mainWindow.webContents.executeJavaScript("playerKey('" + command + "')");
@@ -289,9 +364,8 @@ function loadLocalPage(win, file){
   win.loadURL(url);
 }
 
-
 app.once('ready', function () {
-  if (Menu.getApplicationMenu()) return
+  // if (Menu.getApplicationMenu()) return
 
   var template = [
     {
@@ -329,6 +403,16 @@ app.once('ready', function () {
           label: 'Select All',
           accelerator: 'CmdOrCtrl+A',
           role: 'selectall'
+        },
+        {
+          type: 'separator'
+        },
+        {
+          label: 'Settings',
+          accelerator: 'CmdOrCtrl+S',
+          click: () => {
+            showSettings();
+          }
         }
       ]
     },
@@ -358,7 +442,6 @@ app.once('ready', function () {
       submenu: [
         {
           label: 'Play / Pause',
-          accelerator: 'MediaPlayPause',
           click: function () {
             simulateClick("play-pause");
           }
@@ -368,7 +451,6 @@ app.once('ready', function () {
         },
         {
           label: 'Next',
-          accelerator: 'MediaNextTrack',
           click: function () {
             simulateClick("next");
           }
@@ -378,7 +460,6 @@ app.once('ready', function () {
         },
         {
           label: 'Previous',
-          accelerator: 'MediaPreviousTrack',
           click: function () {
             simulateClick("previous");
           }

@@ -1,0 +1,73 @@
+body {
+	text-align: center;
+	width: auto;
+	height: auto;
+}
+
+.container {
+	margin: 0 auto;
+}
+
+.settings-group {
+	margin: 20px 10px;
+}
+
+.settings-group > h1,
+.settings-group > h2
+{
+	color: white;
+}
+
+.settings-group > h1 {
+	margin: 38px 0;
+}
+
+.settings-group > h2 {
+	font-size: 1em;
+	margin-bottom: 33px;
+}
+
+input[type="text"] {
+	padding: 5px;
+	margin: 10px 0;
+	border-radius: 4px;
+	border: 1px solid #adadad;
+}
+
+.setting {
+	position: relative;
+	display: block;
+	border-bottom: 1px solid #222326;
+	border-top: 1px solid #222326;
+	margin-top: -1px;
+	padding: 8px 0;
+}
+
+.setting-label {
+	float: left;
+	color: #b9bdca;
+	line-height: 49px;
+}
+
+.setting-action {
+	float: right;
+}
+
+.shortcut-record {
+	margin-left: 12px;
+}
+
+#save-settings {
+	font-size: 0.9em;
+	margin-top: 15px;
+}
+
+.cf:before,
+.cf:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.cf:after {
+    clear: both;
+}

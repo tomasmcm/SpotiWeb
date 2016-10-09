@@ -31,10 +31,13 @@
   "license": "CC0-1.0",
   "homepage": "https://github.com/tomasmcm/SpotiWeb",
   "dependencies": {
+    "electron-config": "^0.2.1",
     "electron-packager": "^7.0.2",
     "electron-prebuilt": "^1.1.1",
     "events": "^1.1.0",
     "got": "^6.3.0",
+    "mousetrap": "^1.6.0",
+    "mousetrap-record": "^1.0.1",
     "path": "^0.12.7",
     "semver": "^5.1.0"
   },

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta content="IE=edge" http-equiv="X-UA-Compatible">
+  <meta content="width=device-width,initial-scale=1" name="viewport">
+  <title>SpotiWeb - Settings</title>
+  <link href="basestyles.css" rel="stylesheet" type="text/css">
+  <link href="settings.css" rel="stylesheet" type="text/css">
+  <script src="settings.js"></script>
+</head>
+<body onload="domLoaded()">
+  <div class="container">
+    <section class="settings-group">
+      <h1>Keyboard Shortcuts</h1>
+      <h2>See <a onclick="openShortcutHelp()" href="#">here</a> for valid electron accelerators</h2>
+      <div class="setting cf">
+        <div class="setting-label">Play/Pause</div>
+        <div class="setting-action">
+          <input type="text" id="shortcut-play">
+          <button class="button shortcut-record" onclick="recordSequence('play')">Record</button>
+        </div>
+      </div>
+      <div class="setting cf">
+        <div class="setting-label">Next Track</div>
+        <div class="setting-action">
+          <input type="text" id="shortcut-next">
+          <button class="button shortcut-record" onclick="recordSequence('next')">Record</button>
+        </div>
+      </div>
+      <div class="setting cf">
+        <div class="setting-label">Previous Track</div>
+        <div class="setting-action">
+          <input type="text" id="shortcut-prev">
+          <button class="button shortcut-record" onclick="recordSequence('prev')">Record</button>
+        </div>
+      </div>
+    </section>
+    <button class="button button--primary" id="save-settings" onclick="save()">Save</button>
+  </div>
+</body>
+</html>

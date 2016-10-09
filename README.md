@@ -23,7 +23,7 @@ View <a href="http://s.codepen.io/tomasmcm/debug/EKBLxL" target="_blank">Downloa
 - [x] Allow fullscreen mode
 - [x] Update Checker
 - [x] Lyrics Search
-- [ ] Custom Keyboard Shortcuts
+- [x] Custom Keyboard Shortcuts
 - [ ] Chromecast Support
 - [ ] ...
 

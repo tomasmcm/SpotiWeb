@@ -1,5 +1,7 @@
 # SpotiWeb &nbsp; [![Github Releases](https://img.shields.io/github/downloads/tomasmcm/SpotiWeb/total.svg?maxAge=2592000?style=flat-square)](https://github.com/tomasmcm/SpotiWeb/releases)
 
+# IMPORTANT =====> [New Spotify Web Player](https://github.com/tomasmcm/SpotiWeb/issues/20) <=====
+
 **Electron wrapper of play.spotify.com**
 
 Why would you want to use this instead of the Spotify Desktop App? Because Ads...

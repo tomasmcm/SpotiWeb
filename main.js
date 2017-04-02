@@ -257,22 +257,14 @@ app.on('ready', function() {
     callback({cancel: true});
   });
 
-  var imageFilter = {
-    urls: ["http://o.scdn.co/300/*", "*/loading_throbber.gif"]
+  var tracksFilter = {
+    urls: ["https://api.spotify.com/v1/tracks*"]
   };
 
-  ses.webRequest.onCompleted(imageFilter, function(details) {
+  ses.webRequest.onCompleted(tracksFilter, function(details) {
     //console.log(details.url);
-    if((details.url).indexOf("loading_throbber.gif") != -1){
-      global.loadingGif = details.url;
 
-      mainWindow.webContents.executeJavaScript("appendLyricsButton();");
-    } else {
-      if (checkForImageDownload) {
-        mainWindow.webContents.executeJavaScript("setCurrentImage('" + details.url + "')");
-        checkForImageDownload = false;
-      }
-    }
+    mainWindow.webContents.executeJavaScript("notify();");
   });
 
 

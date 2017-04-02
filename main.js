@@ -41,6 +41,9 @@ switch (process.platform) {
   default:
     app.commandLine.appendSwitch('ppapi-flash-path', path.join(flashPath, 'PepperFlashPlayer-mac.plugin') );
     app.commandLine.appendSwitch('ppapi-flash-version', '21.0.0.216');
+
+    app.commandLine.appendSwitch('widevine-cdm-path', path.join(flashPath, 'widevinecdmadapter.plugin') );
+    app.commandLine.appendSwitch('widevine-cdm-version', '1.4.8.962');
 }
 
 

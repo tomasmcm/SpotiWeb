@@ -166,7 +166,7 @@ app.on('ready', function() {
 
   var registeredNext = globalShortcut.register('MediaNextTrack', function () {
     console.log('medianexttrack pressed');
-    simulateClick("next");
+    simulateClick("Next");
   });
   if (!registeredNext) {
     console.log('medianexttrack registration failed');
@@ -176,7 +176,8 @@ app.on('ready', function() {
 
   var registeredPlay = globalShortcut.register('MediaPlayPause', function () {
     console.log('mediaplaypause pressed');
-    simulateClick("play-pause");
+    simulateClick("Play");
+    simulateClick("Pause");
   });
   if (!registeredPlay) {
     console.log('mediaplaypause registration failed');
@@ -186,7 +187,7 @@ app.on('ready', function() {
 
   var registeredPrevious = globalShortcut.register('MediaPreviousTrack', function () {
     console.log('mediaprevioustrack pressed');
-    simulateClick("previous");
+    simulateClick("Previous");
   });
   if (!registeredPrevious) {
     console.log('mediaprevioustrack registration failed');

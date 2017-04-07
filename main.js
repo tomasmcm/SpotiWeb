@@ -250,7 +250,10 @@ app.on('ready', function() {
     "https://simage2.pubmatic.com/AdServer/*",
     "https://pagead2.googlesyndication.com/*",
     "https://securepubads.g.doubleclick.net/*",
-    "https://googleads.g.doubleclick.net/*"]
+    "https://googleads.g.doubleclick.net/*",
+    "https://adeventtracker.spotify.com/*",
+    // "https://shrt.spotify.com*",
+    "https://*.cloudfront.net/mp3-ad/*"]
   };
   var ses = mainWindow.webContents.session;
   ses.webRequest.onBeforeRequest(filter, function(details, callback) {

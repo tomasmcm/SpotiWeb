@@ -19,33 +19,6 @@ let checkForImageDownload = false;
 let notificationTimeout = 2000;
 if(process.platform === 'linux') notificationTimeout = 1000;
 
-let flashPath = path.join(path.resolve(__dirname, '../'), '/app.asar.unpacked/plugins/');
-
-process.argv.forEach(function (arg, index, array) {
-  if (arg === 'dev') {
-    flashPath = path.join(__dirname, '/plugins/');
-  }
-});
-
-switch (process.platform) {
-  case 'win32':
-  case 'win64':
-    app.commandLine.appendSwitch('ppapi-flash-path', path.join(flashPath, 'PepperFlashPlayer-win32.dll') );
-    app.commandLine.appendSwitch('ppapi-flash-version', '21.0.0.216');
-    break;
-  case 'linux':
-    app.commandLine.appendSwitch('ppapi-flash-path', path.join(flashPath, 'PepperFlashPlayer-linux.so') );
-    app.commandLine.appendSwitch('ppapi-flash-version', '21.0.0.216');
-    break;
-  case 'darwin':
-  default:
-    app.commandLine.appendSwitch('ppapi-flash-path', path.join(flashPath, 'PepperFlashPlayer-mac.plugin') );
-    app.commandLine.appendSwitch('ppapi-flash-version', '21.0.0.216');
-
-    app.commandLine.appendSwitch('widevine-cdm-path', path.join(flashPath, 'widevinecdmadapter.plugin') );
-    app.commandLine.appendSwitch('widevine-cdm-version', '1.4.8.962');
-}
-
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.

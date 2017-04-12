@@ -170,6 +170,10 @@ app.on('ready', function() {
   } else {
     console.log('medianexttrack registration bound!');
   }
+  globalShortcut.register('F9', function () {
+    console.log('F9 pressed');
+    simulateClick("next");
+  });
 
   var registeredPlay = globalShortcut.register('MediaPlayPause', function () {
     console.log('mediaplaypause pressed');
@@ -180,6 +184,10 @@ app.on('ready', function() {
   } else {
     console.log('mediaplaypause registration bound!');
   }
+  globalShortcut.register('F8', function () {
+    console.log('F8 pressed');
+    simulateClick("play-pause");
+  });
 
   var registeredPrevious = globalShortcut.register('MediaPreviousTrack', function () {
     console.log('mediaprevioustrack pressed');
@@ -190,6 +198,10 @@ app.on('ready', function() {
   } else {
     console.log('mediaprevioustrack registration bound!');
   }
+  globalShortcut.register('F7', function () {
+    console.log('F7 pressed');
+    simulateClick("previous");
+  });
 
   lyricsWindow = new BrowserWindow({
     width: 500,

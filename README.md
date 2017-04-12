@@ -12,11 +12,12 @@ Why would you use this app instead of [these](https://github.com/search?utf8=✓
 * Notification of current music with Author, Title & Album Cover
 
 <br>
+
 ### Download
 
 Check [releases](https://github.com/tomasmcm/SpotiWeb/releases) for the latest version.
 
-View <a href="http://s.codepen.io/tomasmcm/debug/EKBLxL" target="_blank">Downloads Count</a>.
+View <a href="http://codepen.io/tomasmcm/embed/EKBLxL/?height=600" target="_blank">Downloads Count</a>.
 
 <br>
 ### Future Improvements

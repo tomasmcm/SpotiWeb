@@ -19,6 +19,8 @@ let checkForImageDownload = false;
 let notificationTimeout = 2000;
 if(process.platform === 'linux') notificationTimeout = 1000;
 
+const widevine = require('electron-widevinecdm');
+widevine.load(app);
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.

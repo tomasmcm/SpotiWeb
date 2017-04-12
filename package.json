@@ -33,6 +33,7 @@
   "dependencies": {
     "electron-packager": "^7.0.2",
     "electron-prebuilt": "^1.1.1",
+    "electron-widevinecdm": "^1.0.2",
     "events": "^1.1.0",
     "got": "^6.3.0",
     "path": "^0.12.7",

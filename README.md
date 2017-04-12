@@ -1,7 +1,5 @@
 # SpotiWeb &nbsp; [![Github Releases](https://img.shields.io/github/downloads/tomasmcm/SpotiWeb/total.svg?maxAge=2592000?style=flat-square)](https://github.com/tomasmcm/SpotiWeb/releases)
 
-# IMPORTANT =====> [New Spotify Web Player](https://github.com/tomasmcm/SpotiWeb/issues/20) <=====
-
 **Electron wrapper of play.spotify.com**
 
 Why would you want to use this instead of the Spotify Desktop App? Because Ads...
@@ -20,6 +18,7 @@ Check [releases](https://github.com/tomasmcm/SpotiWeb/releases) for the latest v
 View <a href="http://codepen.io/tomasmcm/embed/EKBLxL/?height=600" target="_blank">Downloads Count</a>.
 
 <br>
+
 ### Future Improvements
 - [x] Custom menu
 - [x] Fix http errors when loading images
@@ -31,6 +30,7 @@ View <a href="http://codepen.io/tomasmcm/embed/EKBLxL/?height=600" target="_blan
 - [ ] ...
 
 <br>
+
 ### _I'm old school and I want to compile it myself_
 
 From your command line:
@@ -85,6 +85,7 @@ $ npm run build:linux
 ```
 
 <br>
+
 ### Related Work
 * [Electron](http://electron.atom.io)
 * [beaufortfrancois - Spotify Hotkeys](https://github.com/beaufortfrancois/spotify-hotkeys-chrome-extension)
@@ -92,6 +93,7 @@ $ npm run build:linux
 * [jenslind - Electron-gh-releases](https://github.com/jenslind/electron-gh-releases)
 
 <br>
+
 ### Third Party
 * Pepper Flash Plugin, All Rights Reserved © Adobe & Google
 * Spotify, All Rights Reserved © Spotify AB

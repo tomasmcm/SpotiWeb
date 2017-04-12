@@ -78,6 +78,12 @@ global.loadingGif = null;
 // initialization and is ready to create browser windows.
 app.on('ready', function() {
 
+  // Set the default user agent to Internet Explorer 10 to avoid being redirected to open.spotify.com (for now)
+  electron.session.defaultSession.webRequest.onBeforeSendHeaders((details, callback) => {
+    details.requestHeaders['User-Agent'] = 'Mozilla/5.0 (MSIE 10.0; Windows NT 6.1; Trident/5.0)';
+    callback({ cancel: false, requestHeaders: details.requestHeaders });
+  });
+
   // Create the browser window.
   mainWindow = new BrowserWindow({
     width: 1024,

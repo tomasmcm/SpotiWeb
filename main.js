@@ -49,7 +49,6 @@ ipcMain.on('show', function() {
     mainWindow.show();
 });
 
-global.currentSong = {title: "title", author: "author"};
 global.loadingGif = null;
 
 // This method will be called when Electron has finished
@@ -83,25 +82,7 @@ app.on('ready', function() {
   },200);
 
   // Open the DevTools.
-  //mainWindow.webContents.openDevTools();
-
-
-  mainWindow.on('page-title-updated', function(){
-    let title = mainWindow.webContents.getTitle();
-    if(title.indexOf("▶") !== -1){
-      mainWindow.webContents.executeJavaScript("updateLyricsButton();");
-      checkForImageDownload = true;
-      setTimeout(function(){
-        let title = mainWindow.webContents.getTitle();
-        title = title.substring(2);
-        mainWindow.webContents.executeJavaScript("notify();");
-        //console.log(script);
-        checkForImageDownload = false;
-      }, notificationTimeout);
-    }else{
-      return;
-    }
-  });
+  mainWindow.webContents.openDevTools();
 
 
   // Emitted when the window is closed.
@@ -235,17 +216,6 @@ app.on('ready', function() {
     //console.log(details.url);
     callback({cancel: true});
   });
-
-  var tracksFilter = {
-    urls: ["https://api.spotify.com/v1/tracks*"]
-  };
-
-  ses.webRequest.onCompleted(tracksFilter, function(details) {
-    //console.log(details.url);
-
-    mainWindow.webContents.executeJavaScript("notify();");
-  });
-
 
 });
 

@@ -1,21 +1,10 @@
 var ipcRenderer = require('electron').ipcRenderer;
 var remote = require('electron').remote;
-var currentImage = null;
 var notification, notificationTimeout=null, lyricsTimeout=null;
 
-window.setCurrentImage = function(val){
-  currentImage = val;
-};
-
 window.notify = function() {
-  clearAdDivs();
-  var imageURL;
-  if(currentImage == null) {
-    imageURL = document.querySelector(".now-playing-bar .cover-art-image").style.backgroundImage.slice(5, -2);
-  } else {
-    imageURL = currentImage;
-    currentImage = null;
-  }
+  if(document.querySelectorAll(".spoticon-play-16").length > 0) return;
+  var imageURL = document.querySelector(".now-playing-bar .cover-art-image").style.backgroundImage.slice(5, -2);
 
   var title = document.querySelector(".now-playing-bar .track-info__name").querySelector("a").text;
   var author = document.querySelector(".now-playing-bar .track-info__artists").querySelector("a").text;
@@ -44,9 +33,18 @@ window.notify = function() {
 }
 
 window.playerKey = function(command){
-  document.querySelector(".player-controls .control-button[Title="+command+"]").click();
-  if(command == "Play") {
-    notify();
+  try {
+    document.querySelector(".player-controls .control-button[Title="+command+"]").click();
+  } catch (e) {
+    if (e instanceof TypeError){
+    } else {
+      remote.getCurrentWindow().reload();
+    }
+  }
+  if(command == "Pause") {
+    setTimeout(function(){
+      notify();
+    },500);
   }
 }
 
@@ -136,16 +134,29 @@ window.onload = function(){
     if (process.platform === 'darwin') document.querySelector('.navBar').style.paddingTop = "39px";
   }, 500);
 
+  setTimeout(function(){
+    document.querySelector(".track-info__name").addEventListener('DOMSubtreeModified', function () {
+      setTimeout(function(){
+        notify();
+      },500);
+    });
+  }, 500);
 
-  // setInterval(function(){
-  //   if(document.getElementById('modal-notification-area').style.display === 'block'){
-  //     remote.getCurrentWindow().reload();
-  //   }
-  // }, 2000);
+
+  document.querySelector(".player-controls .control-button[Title=Play]").addEventListener('click', function () {
+    setTimeout(function(){
+      if(document.querySelectorAll(".spoticon-play-16").length > 0){
+        console.log("done");
+        setTimeout(function(){
+          notify();
+        },500);
+      }
+    },0);
+  });
 
 }
 
 window.clearAdDivs = function(){
   document.querySelector(".ads-container").style.display="none";
-  document.querySelector(".navlist-item.download-item").style.display="none";
+  document.querySelector(".download-item").style.display="none";
 }

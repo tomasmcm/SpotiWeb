@@ -1,14 +1,14 @@
 {
   "name": "SpotiWeb",
-  "version": "0.6.0",
+  "version": "1.0.0",
   "description": "Electron wrapper of play.spotify.com",
   "main": "main.js",
   "scripts": {
     "start": "electron main.js dev",
     "package": "npm run package:mac && npm run package:win && npm run package:linux",
-    "package:mac": "electron-packager ./ SpotiWeb --platform=darwin --arch=all --version=1.1.1 --app-version=$npm_package_version --build-version=$npm_package_version --out=./releases --asar=true --asar-unpack-dir=node_modules/ --overwrite=true --icon=./assets/icon.icns --ignore=\"releases|distributions|npm-debug.log|node_modules/(electron-(builder|packager|prebuilt)|devtron)|node_modules/electron-widevinecdm/dist/(libwidevinecdm.so|libwidevinecdmadapter.so|widevinecdm.dll|widevinecdmadapter.dll)\"",
-    "package:win": "electron-packager ./ SpotiWeb --platform=win32 --arch=x64 --version=1.1.1 --app-version=$npm_package_version --build-version=$npm_package_version --out=./releases --asar=true --asar-unpack-dir=node_modules/electron-widevinecdm --overwrite=true --icon=./assets/icon.icns --ignore=\"releases|distributions|npm-debug.log|node_modules/(electron-(builder|packager|prebuilt)|devtron)|node_modules/electron-widevinecdm/dist/(libwidevinecdm.dylib|widevinecdmadapter.plugin|libwidevinecdm.so|libwidevinecdmadapter.so)\"",
-    "package:linux": "electron-packager ./ SpotiWeb --platform=linux --arch=all --version=1.1.1 --app-version=$npm_package_version --build-version=$npm_package_version --out=./releases --asar=true --asar-unpack-dir=node_modules/ --overwrite=true --icon=./assets/icon.icns --ignore=\"releases|distributions|npm-debug.log|node_modules/(electron-(builder|packager|prebuilt)|devtron)|node_modules/electron-widevinecdm/dist/(libwidevinecdm.dylib|widevinecdmadapter.plugin|widevinecdm.dll|widevinecdmadapter.dll)\"",
+    "package:mac": "electron-packager ./ SpotiWeb --platform=darwin --arch=all --version=1.7.6 --app-version=$npm_package_version --build-version=$npm_package_version --out=./releases --asar=false --asar-unpack-dir=node_modules/ --overwrite=true --icon=./assets/icon.icns --ignore=\"releases|distributions|npm-debug.log|node_modules/(electron-(builder|packager|prebuilt)|devtron)|node_modules/electron-widevinecdm/dist/(libwidevinecdm.so|libwidevinecdmadapter.so|widevinecdm.dll|widevinecdmadapter.dll)\"",
+    "package:win": "electron-packager ./ SpotiWeb --platform=win32 --arch=x64 --version=1.7.6 --app-version=$npm_package_version --build-version=$npm_package_version --out=./releases --asar=false --asar-unpack-dir=node_modules/electron-widevinecdm --overwrite=true --icon=./assets/icon.icns --ignore=\"releases|distributions|npm-debug.log|node_modules/(electron-(builder|packager|prebuilt)|devtron)|node_modules/electron-widevinecdm/dist/(libwidevinecdm.dylib|widevinecdmadapter.plugin|libwidevinecdm.so|libwidevinecdmadapter.so)\"",
+    "package:linux": "electron-packager ./ SpotiWeb --platform=linux --arch=all --version=1.7.6 --app-version=$npm_package_version --build-version=$npm_package_version --out=./releases --asar=false --asar-unpack-dir=node_modules/ --overwrite=true --icon=./assets/icon.icns --ignore=\"releases|distributions|npm-debug.log|node_modules/(electron-(builder|packager|prebuilt)|devtron)|node_modules/electron-widevinecdm/dist/(libwidevinecdm.dylib|widevinecdmadapter.plugin|widevinecdm.dll|widevinecdmadapter.dll)\"",
     "zip:mac": "./mac.sh",
     "zip:win": "./win.sh",
     "zip:linux": "./linux.sh",
@@ -31,10 +31,11 @@
   "license": "CC0-1.0",
   "homepage": "https://github.com/tomasmcm/SpotiWeb",
   "dependencies": {
-    "electron-packager": "^7.0.2",
-    "electron-prebuilt": "^1.1.1",
+    "electron": "^1.7.6",
+    "electron-packager": "^7.7.0",
     "electron-widevinecdm": "^1.0.2",
     "events": "^1.1.0",
+    "fs-extra": "^4.0.1",
     "got": "^6.3.0",
     "path": "^0.12.7",
     "semver": "^5.1.0"

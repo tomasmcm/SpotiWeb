@@ -57,8 +57,8 @@ window.lyricsLoaded = function(){
 
 window.showLyrics = function(){
   document.querySelector("#lyrics__js").classList.add("spoticon-loading-16");
-  remote.getGlobal('currentSong').title = document.querySelector(".now-playing-bar .track-info__name").querySelector("a").text;
-  remote.getGlobal('currentSong').author = document.querySelector(".now-playing-bar .track-info__artists").querySelector("a").text;
+  remote.getGlobal('sharedObj').title = document.querySelector(".now-playing-bar .track-info__name").querySelector("a").text;
+  remote.getGlobal('sharedObj').author = document.querySelector(".now-playing-bar .track-info__artists").querySelector("a").text;
   ipcRenderer.send('showLyrics');
 }
 
@@ -135,18 +135,13 @@ window.onload = function(){
   }, 500);
 
   setTimeout(function(){
-    document.querySelector(".track-info__name").addEventListener('DOMSubtreeModified', function () {
-      setTimeout(function(){
-        notify();
-      },500);
-    });
+    attachNotificationEvent();
   }, 500);
 
 
   document.querySelector(".player-controls .control-button[Title=Play]").addEventListener('click', function () {
     setTimeout(function(){
       if(document.querySelectorAll(".spoticon-play-16").length > 0){
-        console.log("done");
         setTimeout(function(){
           notify();
         },500);
@@ -154,9 +149,50 @@ window.onload = function(){
     },0);
   });
 
+  if(remote.getGlobal('sharedObj').reloadPlay) {
+    checkPlay();
+    remote.getGlobal('sharedObj').reloadPlay = false;
+  }
 }
 
 window.clearAdDivs = function(){
   document.querySelector(".ads-container").style.display="none";
   document.querySelector(".download-item").style.display="none";
+}
+
+
+window.attachNotificationEvent = function(){
+  if(document.querySelector(".track-info__name") == null) {
+    setTimeout(function(){
+      attachNotificationEvent();
+    }, 500);
+    return;
+  }
+  document.querySelector(".track-info__name").addEventListener('DOMSubtreeModified', function () {
+    setTimeout(function(){
+      notify();
+    },500);
+  });
+}
+
+var playTries = 0;
+window.checkPlay = function(){
+  if(document.querySelectorAll(".player-controls .control-button[Title=Play]").length > 0){
+    setTimeout(function(){
+      playerKey("Play");
+      playTries++;
+    },0);
+    //console.log("tried to press play");
+    if(playTries > 5) {
+      remote.getGlobal('sharedObj').reloadPlay = true;
+      ipcRenderer.send('reload');
+    }
+    setTimeout(function(){
+      checkPlay();
+    },500);
+  }
+}
+
+window.getPlayStatus = function(){
+  remote.getGlobal('sharedObj').playProgress = parseFloat(document.querySelector(".progress-bar__slider").style.left);
 }

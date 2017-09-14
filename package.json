@@ -1,6 +1,6 @@
 {
   "name": "SpotiWeb",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Electron wrapper of play.spotify.com",
   "main": "main.js",
   "scripts": {

@@ -50,6 +50,7 @@ ipcMain.on('show', function() {
 });
 
 global.loadingGif = null;
+global.sharedObj = {reloadPlay: false, playProgress: 0, title: "", author: ""};
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
@@ -180,7 +181,7 @@ app.on('ready', function() {
       if(lyricsWindow != null){
         lyricsWindow.hide();
       }
-      let searchKey = global.currentSong.title + " " + global.currentSong.author;
+      let searchKey = global.sharedObj.title + " " + global.sharedObj.author;
       let lyricsURL = "https://www.musixmatch.com/search/" + escape(searchKey);
       lyricsWindow.loadURL(lyricsURL);
 
@@ -208,12 +209,29 @@ app.on('ready', function() {
     "https://securepubads.g.doubleclick.net/*",
     "https://googleads.g.doubleclick.net/*",
     "https://adeventtracker.spotify.com/*",
-    // "https://shrt.spotify.com*",
-    "https://*.cloudfront.net/mp3-ad/*"]
+    "https://shrt.spotify.com/t/t/*",
+    "https://*.cloudfront.net/mp3-ad/*",
+    "https://*/ads/*/ads/*",
+    //"https://stats.g.doubleclick.net/r/collect?*",
+    "https://www.google.com/ads/ga-audiences?*",
+    ]
   };
+
   var ses = mainWindow.webContents.session;
   ses.webRequest.onBeforeRequest(filter, function(details, callback) {
     //console.log(details.url);
+
+    if((details.url).indexOf("shrt.spotify.com/t/t") > 0){
+      console.log(details.url);
+      //mainWindow.webContents.executeJavaScript("new Notification('Ad Incoming!');");
+      mainWindow.webContents.executeJavaScript("getPlayStatus();");
+      console.log("PlayProgress: " + global.sharedObj.playProgress);
+      if(global.sharedObj.playProgress < 10 || global.sharedObj.playProgress > 90){
+        console.log("Will reload");
+        mainWindow.reload();
+        global.sharedObj.reloadPlay = true;
+      }
+    }
     callback({cancel: true});
   });
 

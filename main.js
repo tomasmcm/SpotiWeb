@@ -85,6 +85,20 @@ app.on('ready', function() {
   // Open the DevTools.
   //mainWindow.webContents.openDevTools();
 
+  // ensure quitting is handled correctly on Mac OS X
+  app.on('before-quit', function(event) {
+    if (process.platform === 'darwin') {
+      willQuit = true;
+    }
+  });
+
+  // Emitted when close button is pressed.
+  mainWindow.on('close', function(event) {
+    if (process.platform === 'darwin' && !willQuit) {
+      event.preventDefault();
+      app.hide();
+    }
+  });
 
   // Emitted when the window is closed.
   mainWindow.on('closed', function() {

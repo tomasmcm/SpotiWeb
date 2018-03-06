@@ -10,13 +10,15 @@ Why would you use this app instead of [these](https://github.com/search?utf8=✓
 * Notification of current music with Author, Title & Album Cover
 
 <br>
+
 ### Download
 
 Check [releases](https://github.com/tomasmcm/SpotiWeb/releases) for the latest version.
 
-View <a href="http://s.codepen.io/tomasmcm/debug/EKBLxL" target="_blank">Downloads Count</a>.
+View <a href="http://codepen.io/tomasmcm/embed/EKBLxL/?height=600" target="_blank">Downloads Count</a>.
 
 <br>
+
 ### Future Improvements
 - [x] Custom menu
 - [x] Fix http errors when loading images
@@ -28,6 +30,7 @@ View <a href="http://s.codepen.io/tomasmcm/debug/EKBLxL" target="_blank">Downloa
 - [ ] ...
 
 <br>
+
 ### _I'm old school and I want to compile it myself_
 
 From your command line:
@@ -82,6 +85,7 @@ $ npm run build:linux
 ```
 
 <br>
+
 ### Related Work
 * [Electron](http://electron.atom.io)
 * [beaufortfrancois - Spotify Hotkeys](https://github.com/beaufortfrancois/spotify-hotkeys-chrome-extension)
@@ -89,6 +93,7 @@ $ npm run build:linux
 * [jenslind - Electron-gh-releases](https://github.com/jenslind/electron-gh-releases)
 
 <br>
+
 ### Third Party
 * Pepper Flash Plugin, All Rights Reserved © Adobe & Google
 * Spotify, All Rights Reserved © Spotify AB

@@ -85,6 +85,20 @@ app.on('ready', function() {
   // Open the DevTools.
   //mainWindow.webContents.openDevTools();
 
+  // ensure quitting is handled correctly on Mac OS X
+  app.on('before-quit', function(event) {
+    if (process.platform === 'darwin') {
+      willQuit = true;
+    }
+  });
+
+  // Emitted when close button is pressed.
+  mainWindow.on('close', function(event) {
+    if (process.platform === 'darwin' && !willQuit) {
+      event.preventDefault();
+      app.hide();
+    }
+  });
 
   // Emitted when the window is closed.
   mainWindow.on('closed', function() {
@@ -130,6 +144,10 @@ app.on('ready', function() {
   } else {
     console.log('medianexttrack registration bound!');
   }
+  globalShortcut.register('F9', function () {
+    console.log('F9 pressed');
+    simulateClick("next");
+  });
 
   var registeredPlay = globalShortcut.register('MediaPlayPause', function () {
     console.log('mediaplaypause pressed');
@@ -141,6 +159,10 @@ app.on('ready', function() {
   } else {
     console.log('mediaplaypause registration bound!');
   }
+  globalShortcut.register('F8', function () {
+    console.log('F8 pressed');
+    simulateClick("play-pause");
+  });
 
   var registeredPrevious = globalShortcut.register('MediaPreviousTrack', function () {
     console.log('mediaprevioustrack pressed');
@@ -151,6 +173,10 @@ app.on('ready', function() {
   } else {
     console.log('mediaprevioustrack registration bound!');
   }
+  globalShortcut.register('F7', function () {
+    console.log('F7 pressed');
+    simulateClick("previous");
+  });
 
   lyricsWindow = new BrowserWindow({
     width: 500,
